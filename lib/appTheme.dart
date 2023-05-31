@@ -8,8 +8,9 @@ class LightThemes {
       primary: Color(0xFF14213d),
       onPrimary: Colors.white,
       secondary: Color(0xFFFFFFFF),
-      onSecondary: Color(0xFF14213d),
+      onSecondary: Color(0xA42A6EFF),
       background: Color(0xFFFFFFFF),
+      tertiary: Color.fromARGB(255, 0, 68, 213),
     ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.play(
@@ -62,15 +63,15 @@ class LightThemes {
       ),
       bodyLarge: GoogleFonts.play(
         fontWeight: FontWeight.bold,
-        color: Color(0xFF14213d),
+        color: Color(0xFF14213d).withOpacity(0.5),
       ),
       bodyMedium: GoogleFonts.play(
         fontWeight: FontWeight.bold,
-        color: Color(0xFF14213d),
+        color: Color(0xFF14213d).withOpacity(0.5),
       ),
       bodySmall: GoogleFonts.play(
         fontWeight: FontWeight.bold,
-        color: Color(0xFF14213d),
+        color: Color(0xFF14213d).withOpacity(0.5),
       ),
     ),
   );
@@ -81,8 +82,10 @@ class DarkThemes {
     useMaterial3: true,
     colorScheme: ColorScheme.dark(
       secondary: Color(0xFF14213d),
+      onSecondary: Color(0xA42A6EFF),
       primary: Color(0xFFFFFFFF),
       background: Color(0xFF14213d),
+      tertiary: Color.fromARGB(255, 0, 68, 213),
     ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.play(

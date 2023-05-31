@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomListTile extends StatefulWidget {
-  int index;
-  Function ontap;
-  CustomListTile({super.key, required this.index, required this.ontap});
+  final int index;
+  final String title;
+  final String url;
+  final Function ontap;
+  CustomListTile(
+      {super.key,
+      required this.index,
+      required this.title,
+      required this.url,
+      required this.ontap});
 
   @override
   State<CustomListTile> createState() => _CustomListTileState();
@@ -25,11 +33,10 @@ class _CustomListTileState extends State<CustomListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      padding: const EdgeInsets.all(10),
-      height: _cardHeight.toDouble(),
+    return Container(
+      // height: _cardHeight.toDouble(),
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(30),
@@ -39,41 +46,50 @@ class _CustomListTileState extends State<CustomListTile> {
           width: 2,
         ),
       ),
-      child: Column(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          InkWell(
-            focusColor: Theme.of(context).colorScheme.primary.withOpacity(0.7),
-            splashColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-            highlightColor: Colors.red,
-            onTap: () => widget.ontap(widget.index),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Container(
+            color: Colors.transparent,
+            margin: const EdgeInsets.only(right: 10),
+            child: const Icon(Icons.ac_unit),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  color: Colors.transparent,
-                  margin: const EdgeInsets.only(right: 10),
-                  child: const Icon(Icons.ac_unit),
+                Text(
+                  '${widget.title}',
+                  style: Theme.of(context).textTheme.titleLarge,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Text('Card ${widget.index}'),
-                const Spacer(
-                  flex: 2,
-                ),
-                IconButton(
-                    onPressed: _changeContainerSize,
-                    icon: (_isExpanded)
-                        ? Icon(Icons.expand_less)
-                        : Icon(Icons.expand_more)),
+                // Text(
+                //   '${widget.url}',
+                //   style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                //         color: Theme.of(context)
+                //             .textTheme
+                //             .bodySmall!
+                //             .color!
+                //             .withOpacity(0.2),
+                //       ),
+                //   overflow: TextOverflow.ellipsis,
+                //   maxLines: 1,
+                // ),
               ],
             ),
           ),
-          (_isExpanded)
-              ? Container(
-                  // height: 200,
-                  color: Colors.red,
-                )
-              : SizedBox(
-                  height: 0,
-                ),
+          // const Spacer(
+          //   flex: 2,
+          // ),
+          IconButton(
+            onPressed: () => widget.ontap(widget.index),
+            icon: FaIcon(
+              FontAwesomeIcons.penToSquare,
+              size: 20,
+            ),
+          ),
         ],
       ),
     );

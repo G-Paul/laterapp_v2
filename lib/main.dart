@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './widgets/customListTile.dart';
 import './appTheme.dart';
+import './dummy/dummy_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,22 +38,78 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.5,
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Theme.of(context).colorScheme.secondary,
             ),
-            child: Center(
+            child: Scrollbar(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Card $index'),
+                    Row(
+                      children: [
+                        Text(
+                          "Title:",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit),
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ],
+                    ),
+                    Text(
+                      dummyData[index]['title'],
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
-                    ElevatedButton(
+                    Row(
+                      children: [
+                        Text(
+                          "URL:",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit),
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ],
+                    ),
+                    Text(
+                      dummyData[index]['url'],
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    FilledButton(
                       onPressed: () => Navigator.pop(context),
                       child: const Text('Close'),
                     )
@@ -73,19 +130,27 @@ class _MyHomePageState extends State<MyHomePage> {
         foregroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: dummyData.length + 1,
         itemBuilder: (context, index) {
           if (index == 0) {
             return Container(
               height: 150,
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(86, 130, 163, 235),
-                  borderRadius: BorderRadius.circular(30)),
+                color: Color.fromARGB(86, 130, 163, 235),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Container(
+                margin: EdgeInsets.all(20),
+                child: Text("Good\nAfternoon",
+                    style: Theme.of(context).textTheme.displayMedium),
+              ),
             );
           }
           return CustomListTile(
-            index: index,
+            index: index - 1,
+            title: dummyData[index - 1]['title'],
+            url: dummyData[index - 1]['url'],
             ontap: _showModalBottomSheet,
           );
         },
