@@ -87,6 +87,7 @@ class _CustomListTileState extends State<CustomListTile> {
             onPressed: () => widget.ontap(widget.index),
             icon: FaIcon(
               FontAwesomeIcons.penToSquare,
+              color: Theme.of(context).colorScheme.tertiary,
               size: 20,
             ),
           ),

@@ -10,7 +10,7 @@ class LightThemes {
       secondary: Color(0xFFFFFFFF),
       onSecondary: Color(0xA42A6EFF),
       background: Color(0xFFFFFFFF),
-      tertiary: Color.fromARGB(255, 0, 68, 213),
+      tertiary: Color(0xff2ec4b6),
     ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.play(
@@ -85,7 +85,7 @@ class DarkThemes {
       onSecondary: Color(0xA42A6EFF),
       primary: Color(0xFFFFFFFF),
       background: Color(0xFF14213d),
-      tertiary: Color.fromARGB(255, 0, 68, 213),
+      tertiary: Color(0xff2ec4b6),
     ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.play(
